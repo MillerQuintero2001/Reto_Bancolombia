@@ -69,31 +69,9 @@ df['transactiontype'] = np.where(df['transactiontype'] == 'Administrativa', -1, 
 # Quitamos la columna 'transactionvouchernumber' ya que contiene solo valores nulos
 df.drop(columns=['transactionvouchernumber'], inplace=True)
 
-
-# Reordenamos las columnas
-
-# Obtener la lista actual de todas las columnas
-columns = df.columns.tolist()
-
-new_column_order = columns[0:1] + columns[-2:] + columns[1:-2]
-
-# Reindexar el DataFrame con el nuevo orden de columnas
-df_reordered = df[new_column_order]
-
-nuevos_nombres = {
-    'finaltrxday': 'Día',
-    'hour_trx': 'Hora Transacción',
-    'hour_only': 'Hora',
-    'transactioncode': 'Código Transacción',
-    'transactioncodedesc': 'Descripción Transacción',
-    'responsecode': 'Transacción Exitosa',
-    'responsecodedesc': 'Descripción Respuesta',
-    'transactiontype': 'Monetaria'
-}
-
-# Renombramos las columnas
-df_reordered.rename(columns=nuevos_nombres, inplace=True)
+# Redefinimos las columnas del DataFrame con un orden y nomenclatura más entendible
+df = functionsETL.redefine_columns(df)
 
 # Guardamos el DataFrame limpio en un nuevo archivo CSV
-df_reordered.to_csv('data_cleaned.csv', index=False)
+df.to_csv('data_cleaned.csv', index=False)
 print("El DataFrame limpio se ha guardado como 'data_cleaned.csv'")
