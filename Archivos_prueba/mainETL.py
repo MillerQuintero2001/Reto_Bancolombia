@@ -73,5 +73,5 @@ df.drop(columns=['transactionvouchernumber'], inplace=True)
 df = functionsETL.redefine_columns(df)
 
 # Guardamos el DataFrame limpio en un nuevo archivo CSV
-df.to_csv('data_cleaned.csv', index=False)
-print("El DataFrame limpio se ha guardado como 'data_cleaned.csv'")
+df.to_csv('transacciones_12-2024.csv', index=False)
+print("El DataFrame limpio se ha guardado como 'transacciones_12-2024.csv'")
